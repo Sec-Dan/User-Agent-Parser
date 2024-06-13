@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Agent Parser</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .highlight {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+        .input-container {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+            color: #000;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff4d4d;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000, #ff4d4d);
+            background-size: 400% 400%;
+            z-index: -1;
+            animation: gradientAnimation 15s ease infinite;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1>User-Agent Parser</h1>
+        <p>Your User-Agent is:</p>
+        <p class="highlight">{{ user_agent }}</p>
+
+        {% if parsed_user_agent %}
+            <div class="parsed-info">
+                <p><strong>Browser:</strong> {{ parsed_user_agent.browser.family }} {{ parsed_user_agent.browser.version_string }}</p>
+                <p><strong>OS:</strong> {{ parsed_user_agent.os.family }} {{ parsed_user_agent.os.version_string }}</p>
+                <p><strong>Device:</strong> {{ parsed_user_agent.device.family }} {{ parsed_user_agent.device.brand }}</p>
+                <p><strong>Is Mobile:</strong> {{ 'Yes' if parsed_user_agent.is_mobile else 'No' }}</p>
+                <p><strong>Is Tablet:</strong> {{ 'Yes' if parsed_user_agent.is_tablet else 'No' }}</p>
+                <p><strong>Is PC:</strong> {{ 'Yes' if parsed_user_agent.is_pc else 'No' }}</p>
+                <p><strong>Is Touch Capable:</strong> {{ 'Yes' if parsed_user_agent.is_touch_capable else 'No' }}</p>
+            </div>
+        {% endif %}
+
+        <div class="input-container">
+            <form method="POST" action="/parse">
+                <input type="text" name="user_agent" placeholder="Paste User-Agent string here" required>
+                <button type="submit"><i class="fas fa-search"></i> Parse</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
