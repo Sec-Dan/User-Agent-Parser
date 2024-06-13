@@ -31,33 +31,33 @@ The User-Agent Parser is a web application built with Python and Flask that pars
 
 1. Clone the repository:
 
-   \`\`\`bash
+   ```bash
    git clone https://github.com/yourusername/user-agent-parser.git
    cd user-agent-parser
-   \`\`\`
+   ```
 
 2. Install dependencies:
 
-   \`\`\`bash
+   ```bash
    pip install -r requirements.txt
-   \`\`\`
+   ```
 
 ### Running Locally
 
 1. Set environment variables (optional):
 
-   \`\`\`bash
+   ```bash
    export FLASK_APP=app.py
    export FLASK_ENV=development
-   \`\`\`
+   ```
 
 2. Start the Flask development server:
 
-   \`\`\`bash
+   ```bash
    flask run
-   \`\`\`
+   ```
 
-3. Access the application at \`http://127.0.0.1:5000/\`.
+3. Access the application at `http://127.0.0.1:5000/`.
 
 ## Usage
 
