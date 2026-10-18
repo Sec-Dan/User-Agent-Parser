@@ -6,6 +6,7 @@
     <title>User-Agent Parser</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script defer src="https://analytics.swiftworks.dev/script.js" data-website-id="b21acd0f-0b7c-4093-8c3a-8d208d1816c1"></script>
     <style>
         body {
             background-color: #000;
@@ -89,7 +90,7 @@
         <div class="input-container">
             <form method="POST" action="/parse">
                 <input type="text" name="user_agent" placeholder="Paste User-Agent string here" required>
-                <button type="submit"><i class="fas fa-search"></i> Parse</button>
+                <button type="submit" data-umami-event="ua-parse"><i class="fas fa-search"></i> Parse</button>
             </form>
         </div>
     </div>
