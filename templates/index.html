@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User-Agent Parser</title>
+    <title>User-Agent Parser: What Is My User Agent? | DanSec</title>
+    <meta name="description" content="See your browser user agent and break any user-agent string down into browser, operating system and device. Free, with an explanation of what each part means.">
+    <link rel="canonical" href="https://agent.dansec.red/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://agent.dansec.red/">
+    <meta property="og:title" content="User-Agent Parser: What Is My User Agent? | DanSec">
+    <meta property="og:description" content="See your browser user agent and break any user-agent string down into browser, operating system and device. Free, with an explanation of what each part means.">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"User-Agent Parser","url":"https://agent.dansec.red/","description":"See your browser user agent and break any user-agent string down into browser, operating system and device. Free, with an explanation of what each part means.","applicationCategory":"SecurityApplication","operatingSystem":"Any","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"DanSec","url":"https://dansec.red/"}}</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <script defer src="https://analytics.swiftworks.dev/script.js" data-website-id="b21acd0f-0b7c-4093-8c3a-8d208d1816c1"></script>
@@ -13,9 +21,8 @@
             color: #fff;
             font-family: 'Arial', sans-serif;
             text-align: center;
-            padding: 50px;
+            padding: 50px 16px;
             margin: 0;
-            overflow: hidden;
         }
         .container {
             background: rgba(0, 0, 0, 0.8);
@@ -47,6 +54,12 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+        .about { text-align: left; margin-top: 24px; font-size: 15px; line-height: 1.6; color: #ddd; }
+        .about h2 { color: #ff4d4d; font-size: 18px; margin: 22px 0 6px; }
+        .about h2:first-child { margin-top: 0; }
+        .about code { color: #fff; word-break: break-word; }
+        .about a, .more-tools a { color: #fff; }
+        .more-tools { max-width: 660px; margin: 20px auto 0; font-size: 13px; color: #ddd; }
         button:hover {
             background-color: #cc0000;
         }
@@ -94,5 +107,24 @@
             </form>
         </div>
     </div>
+
+    <article class="container about">
+        <h2>What is a user agent?</h2>
+        <p>A user agent is the text your browser sends with every web request to identify itself. Sites use it to serve compatible pages and to count visitors, and security teams use it when hunting through logs for unusual clients.</p>
+        <h2>How to read one</h2>
+        <p>Take <code>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36</code>:</p>
+        <ul>
+            <li><code>Mozilla/5.0</code> is a historical token nearly every browser still sends for compatibility. It does not mean Firefox.</li>
+            <li><code>(Windows NT 10.0; Win64; x64)</code> is the platform.</li>
+            <li><code>AppleWebKit/537.36 (KHTML, like Gecko)</code> is the rendering engine family, also largely kept for compatibility.</li>
+            <li><code>Chrome/130.0.0.0</code> is the browser and version. The trailing zeros are deliberate, as Chrome reduces the detail it shares.</li>
+            <li><code>Safari/537.36</code> is another compatibility token, and is why Chrome appears to claim it is Safari.</li>
+        </ul>
+        <h2>Can you trust a user agent?</h2>
+        <p>Not on its own. The value is set by the client, so anyone can change it, and malware and scrapers often imitate common browsers. Treat it as a useful clue alongside other evidence such as the IP address, which you can look up in <a href="https://explorer.dansec.red/">OSINT Explorer</a>.</p>
+        <h2>Privacy</h2>
+        <p>The string is parsed to show you the result and is not saved anywhere. The <a href="https://github.com/Sec-Dan/User-Agent-Parser">source code is public</a>.</p>
+    </article>
+    <footer class="more-tools"><p>More free tools from <a href="https://dansec.red/">DanSec</a>: <a href="https://decode.dansec.red/">Safelinks Decoder</a> &middot; <a href="https://expaaander.dansec.red/">URL Expander</a> &middot; <a href="https://explorer.dansec.red/">OSINT Explorer</a> &middot; <a href="https://worldrisk.dansec.red/">WorldRisk</a> &middot; <a href="https://reports.dansec.red/about">Report Builder</a> &middot; <a href="https://blog.dansec.red/">DanSec Daily</a></p></footer>
 </body>
 </html>
